@@ -1,0 +1,21 @@
+holonomic_robot: false
+min_vel_x: 0.0
+max_vel_x: 0.5
+acc_lim_y: 0.0
+min_vel_theta: -1.0
+max_vel_theta: 1.0
+min_in_place_vel_theta: 0.3
+escape_vel: -0.2
+
+xy_goal_tolerance: 0.1
+yaw_goal_tolerance: 0.05
+
+sim_time: 10.0
+meter_scoring: false
+pdist_scale: 2.0
+gdist_scale: 4.0
+occdist_scale: 0.01
+heading_scoring: false
+
+dwa: true
+publish_cost_grid_pc: true

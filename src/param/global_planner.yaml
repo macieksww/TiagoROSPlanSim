@@ -1,0 +1,6 @@
+default_tolerance: 0.05
+use_grid_path: false
+use_quadratic: false
+use_dijkstra: true
+old_navfn_behavior: false
+visualize_potential: true

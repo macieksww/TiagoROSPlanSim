@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  <node name="move" pkg="dyplom" type="move" output="screen">
+    <rosparam file="$(find dyplom)/param/global_costmap.yaml" command="load" ns="global_costmap"/>
+    <rosparam file="$(find dyplom)/param/local_costmap.yaml" command="load" ns="local_costmap"/>
+    <rosparam file="$(find dyplom)/param/global_planner.yaml" command="load" ns="global_planner"/>
+    <rosparam file="$(find dyplom)/param/local_planner.yaml" command="load" ns="local_planner"/>
+  </node>
+</launch>

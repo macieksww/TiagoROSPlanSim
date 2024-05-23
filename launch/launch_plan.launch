@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<launch>
+
+	<arg name="domain_path"	default="/home/maciek/dyplom_ws/src/dyplom/pddl_plans/simple_robot_move_with_cost_plan/domain.pddl" />
+	<arg name="problem_path"	default="/home/maciek/dyplom_ws/src/dyplom/pddl_plans/simple_robot_move_with_cost_plan/problem.pddl" />
+    <arg name="gen_problem_path"	default="/home/maciek/dyplom_ws/src/dyplom/pddl_plans/simple_robot_move_with_cost_plan/gen_problem.pddl" />	
+	<arg name="data_path"	default="/home/maciek/dyplom_ws/src/dyplom/pddl_plans/simple_robot_move_with_cost_plan/" />
+
+
+	<!-- knowledge base -->
+	<node name="rosplan_knowledge_base" pkg="rosplan_knowledge_base" type="knowledgeBase" respawn="false" output="screen">
+		<param name="domain_path" value="$(arg domain_path)" />
+		<param name="problem_path" value="$(arg problem_path)" />
+		<!-- conditional planning flags -->
+		<param name="use_unknowns" value="false" />
+	</node>
+
+	<!-- problem generation -->
+	<include file="$(find rosplan_planning_system)/launch/includes/problem_interface.launch">
+		<arg name="knowledge_base"   value="rosplan_knowledge_base" />
+		<arg name="domain_path"      value="$(arg domain_path)" />
+		<arg name="problem_path"     value="$(arg gen_problem_path)" />
+		<arg name="problem_topic"    value="problem_instance" />
+	</include>
+
+    <!-- planner interface -->
+	<include file="$(find rosplan_planning_system)/launch/includes/planner_interface.launch">
+		<arg name="use_problem_topic"    value="true" />
+		<arg name="problem_topic"        value="/rosplan_problem_interface/problem_instance" />
+		<arg name="planner_topic"        value="planner_output" />
+		<arg name="domain_path"          value="$(arg domain_path)" />
+		<arg name="problem_path"         value="$(arg gen_problem_path)" />
+		<arg name="data_path"            value="$(arg data_path)" />
+		
+		<!-- choice of planner: POPF -->
+		<!-- <arg name="planner_command"      value="timeout 10 $(find rosplan_planning_system)/common/bin/popf DOMAIN PROBLEM" /> -->
+		<!-- <arg name="planner_interface"    value="popf_planner_interface" /> -->
+
+		<!-- choice of planner: SMT -->
+		<!-- <arg name="planner_command"      value="timeout 1000 $(find rosplan_planning_system)/common/bin/SMTPlan/SMTPlan/build/SMTPlan DOMAIN PROBLEM" />
+		<arg name="planner_interface"    value="smt_planner_interface" /> -->
+		
+		<!-- choice of planner: ENHSP -->
+		<arg name="planner_command"      value="timeout 10 $(find rosplan_planning_system)/common/bin/ENHSPPlan/enhsp -o DOMAIN -f PROBLEM" />
+		<arg name="planner_interface"    value="enhsp_planner_interface" />
+	</include>
+
+	<!-- plan parsing -->
+	<node name="rosplan_parsing_interface" pkg="rosplan_planning_system" type="pddl_simple_plan_parser" respawn="false" output="screen">
+		<param name="knowledge_base" value="rosplan_knowledge_base" />
+		<param name="planner_topic"  value="/rosplan_planner_interface/planner_output" />
+		<param name="plan_topic"     value="complete_plan" />
+	</node>
+
+	<!-- plan dispatching -->
+	<node name="rosplan_plan_dispatcher" pkg="rosplan_planning_system" type="pddl_simple_plan_dispatcher" respawn="false" output="screen">
+		<param name="knowledge_base"        value="rosplan_knowledge_base" />
+		<param name="plan_topic"            value="/rosplan_parsing_interface/complete_plan" />
+		<param name="action_dispatch_topic" value="action_dispatch" />
+		<param name="action_feedback_topic" value="action_feedback" />
+	</node>
+</launch>

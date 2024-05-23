@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <node name="action_interface_manager" pkg="tiago_rosplan_sim" type="ActionInterfaceManager.py" output="screen">
+    <rosparam file="$(find tiago_rosplan_sim)/src/config/actions_config.yaml" command="load" ns="actions"/>
+  </node>
+</launch>

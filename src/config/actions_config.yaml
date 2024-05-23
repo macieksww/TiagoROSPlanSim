@@ -1,0 +1,196 @@
+#============================================================#
+# This file contains example action interface configurations #
+# that can be used with the rosplan_stage_exploration_demo.  #
+#============================================================#
+
+# special terms:
+# ($pddlparam [parameter name]) to use the parameter value directly in an assignment, e.g.
+#     default_actionlib_topic: /($pddlparam robot)/move_base
+# ($rosparam [parameter name]) to load the value from parameter server, e.g.
+#     target_pose.pose.position.x = ($rosparam /rosplan_demo_waypoints/wp/($pddlparam to))[0]
+#     target_pose.pose.position.y = ($rosparam /rosplan_demo_waypoints/wp/($pddlparam to))[1]
+
+# interface types: [actionlib, service, fsm] 
+
+# Each element of actions defines one interface between
+# a PDDL action and the implementation of its execution.
+
+# ricocharger 1.028 2.621
+# kuchnia -0.752 -0.388
+# salon 2.638 8.608
+# pokoj 3.202 5.017
+
+actions:
+    # EXAMPLE actionlib interface
+    - name: move
+      interface_type: actionlib
+      # Default actionlib goal arguments for this action.
+      default_actionlib_topic: /move_base
+      default_actionlib_msg_type: move_base_msgs/MoveBase
+      default_actionlib_goal:
+          target_pose.header.frame_id: "map"
+          # target_pose.pose.position.x: ($rosparam /rosplan_demo_waypoints/wp/($pddlparam to))[0]
+          # target_pose.pose.position.y: ($rosparam /rosplan_demo_waypoints/wp/($pddlparam to))[1]
+          target_pose.pose.position.x: 1.0
+          target_pose.pose.position.y: 1.0
+          target_pose.pose.orientation.w: 1
+
+    - name: rescue
+      interface_type: service
+      # Default actionlib goal arguments for this action.
+      default_service: /rescue_finished_service
+      default_service_type: tiago_rosplan_sim/RescueService
+      default_service_goal: 1
+    
+    - name: event-end-move
+      interface_type: service
+      # Default actionlib goal arguments for this action.
+      default_service: /rescue_service
+      default_service_type: tiago_rosplan_sim/RescueService
+      default_service_goal: 1
+    
+    - name: event-end-rescue
+      interface_type: service
+      # Default actionlib goal arguments for this action.
+      default_service: /rescue_service
+      default_service_type: tiago_rosplan_sim/RescueService
+      default_service_goal: 1
+
+locations:
+
+    - name: stpt
+      goal:
+        target_pose.header.frame_id: "map"
+        target_pose.pose.position.x: 0.0
+        target_pose.pose.position.y: 0.0
+        target_pose.pose.orientation.w: 1
+
+    - name: warsztat
+      goal:
+        target_pose.header.frame_id: "map"
+        target_pose.pose.position.x: 3.0
+        target_pose.pose.position.y: 2.0
+        target_pose.pose.orientation.w: 1
+
+    - name: kuchnia
+      goal:
+        target_pose.header.frame_id: "map"
+        target_pose.pose.position.x: 2.0
+        target_pose.pose.position.y: 2.0
+        target_pose.pose.orientation.w: 1
+
+    - name: pokoj
+      goal:
+        target_pose.header.frame_id: "map"
+        target_pose.pose.position.x: 3.9
+        target_pose.pose.position.y: 8.2
+        target_pose.pose.orientation.w: 1
+
+    - name: salon
+      goal:
+        target_pose.header.frame_id: "map"
+        target_pose.pose.position.x: 1.6
+        target_pose.pose.position.y: 8.7
+        target_pose.pose.orientation.w: 1
+
+    # - name: start
+    #   goal:
+    #     target_pose.header.frame_id: "map"
+    #     target_pose.pose.position.x: 0.0
+    #     target_pose.pose.position.y: -4.0
+    #     target_pose.pose.orientation.w: 1
+
+    # - name: warsztat
+    #   goal:
+    #     target_pose.header.frame_id: "map"
+    #     target_pose.pose.position.x: 2.0
+    #     target_pose.pose.position.y: -1.0
+    #     target_pose.pose.orientation.w: 1
+
+    # - name: kuchnia
+    #   goal:
+    #     target_pose.header.frame_id: "map"
+    #     target_pose.pose.position.x: 2.0
+    #     target_pose.pose.position.y: 2.0
+    #     target_pose.pose.orientation.w: 1
+
+    # - name: pokoj
+    #   goal:
+    #     target_pose.header.frame_id: "map"
+    #     target_pose.pose.position.x: 5.0
+    #     target_pose.pose.position.y: 2.0
+    #     target_pose.pose.orientation.w: 1
+
+    # - name: salon
+    #   goal:
+    #     target_pose.header.frame_id: "map"
+    #     target_pose.pose.position.x: 5.0
+    #     target_pose.pose.position.y: 0.0
+    #     target_pose.pose.orientation.w: 1
+    # - name: start
+    #   goal:
+    #     target_pose.header.frame_id: "map"
+    #     target_pose.pose.position.x: 0.0
+    #     target_pose.pose.position.y: 0.0
+    #     target_pose.pose.orientation.w: 1
+
+    # - name: warsztat
+    #   goal:
+    #     target_pose.header.frame_id: "map"
+    #     target_pose.pose.position.x: 1.02
+    #     target_pose.pose.position.y: 2.62
+    #     target_pose.pose.orientation.w: 1
+
+    # - name: kuchnia
+    #   goal:
+    #     target_pose.header.frame_id: "map"
+    #     target_pose.pose.position.x: -0.75
+    #     target_pose.pose.position.y: -0.39
+    #     target_pose.pose.orientation.w: 1
+
+    # - name: pokoj
+    #   goal:
+    #     target_pose.header.frame_id: "map"
+    #     target_pose.pose.position.x: 3.20
+    #     target_pose.pose.position.y: 5.01
+    #     target_pose.pose.orientation.w: 1
+
+    # - name: salon
+    #   goal:
+    #     target_pose.header.frame_id: "map"
+    #     target_pose.pose.position.x: 2.63
+    #     target_pose.pose.position.y: 8.61
+    #     target_pose.pose.orientation.w: 1
+
+
+#     default_actionlib_result (none)
+
+# EXAMPLE override defaults: the following would override
+# the default_actionlib_goal when (pddl param ?to == wp0).
+#      pddl_parameters: [to]
+#      parameter_values:
+#      - values: [wp0]
+#        actionlib_goal:
+#          target_pose.header.frame_id: "map"
+#          target_pose.pose.position.x: 0
+#          target_pose.pose.position.y: 0
+#          target_pose.pose.orientation.w: 1
+#        actionlib_result (none)
+
+    # # EXAMPLE service interface
+    # - name: clear_costmap
+    #   interface_type: service
+    #   # Default service arguments for this action.
+    #   default_service: /move_base/clear_costmaps
+    #   default_service_type: std_srvs/Empty
+
+# EXAMPLE of additional service arguments for default and parameter-based
+# requests and expected response.
+#     default_service_request (none)
+#     default_service_response (none)
+#      pddl_parameters: [label1 label2]
+#       parameter_values:
+#       - values: [param1 param2]
+#         service_request (none)
+#         service_response (none)
+

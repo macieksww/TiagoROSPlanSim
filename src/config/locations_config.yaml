@@ -1,0 +1,84 @@
+locations:
+    # - name: start
+    #   target_pose.header.frame_id: "map"
+    #   target_pose.pose.position.x: 0.0
+    #   target_pose.pose.position.y: 0.0
+    #   target_pose.pose.orientation.w: 1
+
+    # - name: warsztat
+    #   target_pose.header.frame_id: "map"
+    #   target_pose.pose.position.x: 3.0
+    #   target_pose.pose.position.y: 2.0
+    #   target_pose.pose.orientation.w: 1
+
+    # - name: kuchnia
+    #   target_pose.header.frame_id: "map"
+    #   target_pose.pose.position.x: 2.0
+    #   target_pose.pose.position.y: 2.0
+    #   target_pose.pose.orientation.w: 1
+
+    # - name: pokoj
+    #   target_pose.header.frame_id: "map"
+    #   target_pose.pose.position.x: 3.9
+    #   target_pose.pose.position.y: 8.2
+    #   target_pose.pose.orientation.w: 1
+
+    # - name: salon
+    #   target_pose.header.frame_id: "map"
+    #   target_pose.pose.position.x: 1.6
+    #   target_pose.pose.position.y: 8.7
+    #   target_pose.pose.orientation.w: 1
+
+    - name: start
+      target_pose.header.frame_id: "map"
+      target_pose.pose.position.x: 0.0
+      target_pose.pose.position.y: -4.0
+      target_pose.pose.orientation.w: 1
+
+    - name: warsztat
+      target_pose.header.frame_id: "map"
+      target_pose.pose.position.x: 2.0
+      target_pose.pose.position.y: -1.0
+      target_pose.pose.orientation.w: 1
+
+    - name: kuchnia
+      target_pose.header.frame_id: "map"
+      target_pose.pose.position.x: 2.0
+      target_pose.pose.position.y: 2.0
+      target_pose.pose.orientation.w: 1
+
+    - name: pokoj
+      target_pose.header.frame_id: "map"
+      target_pose.pose.position.x: 5.0
+      target_pose.pose.position.y: 2.0
+      target_pose.pose.orientation.w: 1
+
+    - name: salon
+      target_pose.header.frame_id: "map"
+      target_pose.pose.position.x: 5.0
+      target_pose.pose.position.y: 0.0
+      target_pose.pose.orientation.w: 1
+
+    # - name: warsztat
+    #   target_pose.header.frame_id: "map"
+    #   target_pose.pose.position.x: 1.02
+    #   target_pose.pose.position.y: 2.62
+    #   target_pose.pose.orientation.w: 1
+
+    # - name: kuchnia
+    #   target_pose.header.frame_id: "map"
+    #   target_pose.pose.position.x: -0.75
+    #   target_pose.pose.position.y: -0.39
+    #   target_pose.pose.orientation.w: 1
+
+    # - name: pokoj
+    #   target_pose.header.frame_id: "map"
+    #   target_pose.pose.position.x: 3.20
+    #   target_pose.pose.position.y: 5.01
+    #   target_pose.pose.orientation.w: 1
+
+    # - name: salon
+    #   target_pose.header.frame_id: "map"
+    #   target_pose.pose.position.x: 2.63
+    #   target_pose.pose.position.y: 8.61
+    #   target_pose.pose.orientation.w: 1
